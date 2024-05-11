@@ -109,7 +109,7 @@ const Page = () => {
             </div>
           }
         >
-          {({ setIsOpened }) => (
+          {({setIsOpened}) => (
             <Form
               onSuccess={() => setIsOpened(true)}
               onError={() => null}
