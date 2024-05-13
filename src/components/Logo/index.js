@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./style.scss";
 
 const Logo = ({ size }) => (
-  <div className="Logo">
+  <div className="Logo" data-testid="logo">
     <svg
       width={size === "large" ? "160" : "130"}
       height={size === "large" ? "60" : "60"}
