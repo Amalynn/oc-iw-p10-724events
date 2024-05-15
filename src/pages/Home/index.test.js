@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import Home from "./index";
 
 describe("When Form is created", () => {
@@ -29,16 +30,29 @@ describe("When Form is created", () => {
 
 
 describe("When a page is created", () => {
-  it("a list of events is displayed", () => {
-    // to implement
+  it("a list of events is displayed", async () => {
+    render(<Home />);
+    const list = screen.getByTestId("realisations-testid");
+    const cards = await within(list).findAllByTestId("card-testid");
+    expect(cards.length).toBeGreaterThan(3);
   })
   it("a list a people is displayed", () => {
-    // to implement
+    render(<Home />);
+    const list = screen.getByTestId("listcontainer-testid") ;
+    const items = within(list).getAllByTestId("peoplecard-testid");
+    expect(items.length).toBeGreaterThan(3);
   })
-  it("a footer is displayed", () => {
-    // to implement
+  it("a footer is displayed", async () => {
+    render(<Home />);
+    const footer = screen.getByRole("contentinfo");
+    const logo = within(footer).getByTestId("logo");
+    const lastEventCard = await within(footer).findByTestId("card-testid");
+    expect(footer).toBeInTheDocument();
+    expect(footer).toContainElement(logo);
+    expect(footer).toContainElement(lastEventCard);
   })
   it("an event card, with the last event, is displayed", () => {
     // to implement
+    
   })
 });
